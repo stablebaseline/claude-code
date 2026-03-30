@@ -1,0 +1,9 @@
+{
+  "sb": {
+    "type": "http",
+    "url": "https://api.stablebaseline.io/functions/v1/cloud-serve/mcp",
+    "headers": {
+      "Authorization": "Bearer ${STABLE_BASELINE_API_KEY}"
+    }
+  }
+}
