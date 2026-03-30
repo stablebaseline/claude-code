@@ -11,7 +11,11 @@
       "name": "stable-baseline",
       "description": "AI-powered documentation that stays in sync with your code. Slash commands for creating, editing, and maintaining project docs with diagrams.",
       "category": "productivity",
-      "source": ".",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/stablebaseline/claude-code.git",
+        "sha": "beb868c391aea2fee8e16ab0877e448c1649e417"
+      },
       "homepage": "https://stablebaseline.io"
     }
   ]
