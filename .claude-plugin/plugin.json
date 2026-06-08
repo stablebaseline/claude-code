@@ -1,9 +1,12 @@
 {
   "name": "stable-baseline",
-  "description": "Stable Baseline — AI-powered documentation that stays in sync with your code. Create, edit, and maintain project docs with diagrams, all from Claude Code.",
-  "version": "1.0.0",
+  "description": "Create and maintain living docs, diagrams, infographics, and whiteboards in your Stable Baseline workspace, and search your shared knowledge graph, all from Claude Code.",
+  "version": "1.1.0",
   "author": {
     "name": "Stable Baseline",
     "email": "support@stablebaseline.io"
-  }
+  },
+  "homepage": "https://stablebaseline.io",
+  "repository": "https://github.com/stablebaseline/claude-code",
+  "license": "Apache-2.0"
 }
