@@ -1,0 +1,41 @@
+name: Publish to MCP Registry
+
+# Publishes .mcp/server.json to the Official MCP Registry
+# (registry.modelcontextprotocol.io). From there, downstream registries
+# such as the GitHub MCP Registry (Copilot / VS Code) pick it up
+# automatically. Auth uses GitHub OIDC, so no secrets are stored: the
+# workflow runs in the stablebaseline org, which authorises the
+# io.github.stablebaseline/* namespace.
+#
+# Runs on any change to server.json on the default branch, and on demand.
+# Bump "version" in .mcp/server.json for each new published release.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - ".mcp/server.json"
+      - ".github/workflows/publish-mcp.yml"
+  workflow_dispatch: {}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mcp-publisher
+        run: |
+          curl -sSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" -o mcp-publisher.tar.gz
+          tar xzf mcp-publisher.tar.gz
+          chmod +x mcp-publisher
+
+      - name: Authenticate via GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server.json
+        run: ./mcp-publisher publish .mcp/server.json
