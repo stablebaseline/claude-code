@@ -14,9 +14,16 @@ If you don't know IDs yet: use `listWorkspaces` -> `listProjects` to discover th
 There are two ways to build a board. Pick based on what the user wants:
 
 ## A) AI multi-agent design (premium, fastest for a polished board)
-- Call `designWhiteboard` with a clear goal in plain English. It runs a planner/layouter/builder/critic team and returns a finished, rendered board.
-- COST + CONSENT: `designWhiteboard` costs 50 credits per run. State the cost and get explicit user confirmation BEFORE calling it. Always offer the manual path (free) as an alternative.
-- If unsure there are enough credits, check `getCreditBalance` first.
+- Call `autoDesignWhiteboard` with a clear goal in plain English. It runs a planner/layouter/builder/critic team and returns a finished, rendered board.
+- COST + CONSENT: it costs 50 credits per run. The tool enforces this itself with a two-call handshake, so follow it exactly:
+  1. Call `autoDesignWhiteboard` with `{ goal }` and WITHOUT `confirm`. It returns a cost quote and the current credit balance. It does no work and spends nothing.
+  2. Show the user the quote, and always offer the manual path in section B as the free alternative.
+  3. Only after the user agrees, call again with the same arguments plus `confirm: true`.
+
+  A single call with `confirm: true` up front skips the user's decision. A single call without it returns a quote and nothing else, so treating that as a failure is the most common mistake here.
+- It runs in the BACKGROUND. The second call returns a `sessionId` and the board fills in over roughly 1 to 3 minutes, so tell the user it is building rather than waiting for a finished board in the response. If the server fails part way, the credits are refunded automatically.
+- Useful optional arguments: `title`, `projectId`, `documentId`, `brandKitId`, and `designProfile`, which is one of `standard` (default), `branded-executive`, `illustrated`, `image`, `agentic` or `agentic-deck`.
+- `sourceTranscript` bills differently: 2 credits per minute with a 10-minute minimum, NOT the flat 50.
 
 ## B) Manual authoring (free, full control)
 1) `createWhiteboard` with { projectId, title }. The title is required.
@@ -30,7 +37,7 @@ There are two ways to build a board. Pick based on what the user wants:
 
 ## Hard rules
 - Whiteboard titles are mandatory.
-- Never call `designWhiteboard` without first confirming the 50-credit cost with the user.
+- Never send `confirm: true` to `autoDesignWhiteboard` before the user has seen the quote and agreed to the 50-credit cost.
 - After creating, cache the board's title -> id in `.sb/config.json` (`cache.whiteboards`) and set `cache.lastUpdated` to the current ISO 8601 timestamp.
 
 ## Reference
