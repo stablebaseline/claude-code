@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "stable-baseline",
-      "description": "Create and maintain living docs, diagrams, infographics, and whiteboards, and search your shared knowledge graph, all from Claude Code.",
+      "description": "Create and maintain living docs, diagrams, infographics, and whiteboards in your Stable Baseline workspace, and search your shared knowledge graph, all from Claude Code.",
       "category": "productivity",
       "source": {
         "source": "url",
