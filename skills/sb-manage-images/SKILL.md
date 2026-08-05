@@ -5,7 +5,6 @@ description: "Upload, insert, update, or delete images in a Stable Baseline docu
 
 # Stable Baseline — Manage Images
 
-$ARGUMENTS
 
 Manage images in a Stable Baseline document using MCP tools.
 

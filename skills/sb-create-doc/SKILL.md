@@ -5,7 +5,6 @@ description: "Create a new Stable Baseline document (CDMD) with optional follow-
 
 # Stable Baseline — Create Document
 
-$ARGUMENTS
 
 Create a Stable Baseline document using MCP tools.
 

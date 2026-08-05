@@ -5,7 +5,6 @@ description: "Edit an existing Stable Baseline document using line-based patches
 
 # Stable Baseline — Edit Document
 
-$ARGUMENTS
 
 Edit an existing Stable Baseline document using MCP tools.
 

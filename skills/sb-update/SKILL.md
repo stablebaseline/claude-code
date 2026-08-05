@@ -5,7 +5,6 @@ description: "Update Stable Baseline documentation with changes, decisions, and 
 
 # Stable Baseline — Update Documentation
 
-$ARGUMENTS
 
 You are updating Stable Baseline documentation to reflect changes, decisions, or knowledge from this conversation.
 

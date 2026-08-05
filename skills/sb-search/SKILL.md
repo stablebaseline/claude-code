@@ -5,7 +5,6 @@ description: "Search the Stable Baseline knowledge graph (the shared company bra
 
 # Stable Baseline — Search the Knowledge Graph
 
-$ARGUMENTS
 
 Every document, diagram, plan, and board in Stable Baseline feeds a self-learning knowledge graph that is shared across the workspace. Use it to answer questions and find content from Claude Code.
 

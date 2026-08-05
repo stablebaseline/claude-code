@@ -5,7 +5,6 @@ description: "Upload, reference, and manage data files (CSV, JSON, TSV) for Vega
 
 # Stable Baseline — Manage Data Files
 
-$ARGUMENTS
 
 Manage data files for Vega/Vega-Lite diagrams in a Stable Baseline document.
 

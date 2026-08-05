@@ -5,8 +5,6 @@ description: "Create a Stable Baseline whiteboard, either by hand (stencils, arc
 
 # Stable Baseline — Create Whiteboard
 
-$ARGUMENTS
-
 Create a freeform whiteboard in Stable Baseline using MCP.
 
 If you don't know IDs yet: use `listWorkspaces` -> `listProjects` to discover them, or read `.sb/config.json` for cached IDs. Read `getWhiteboardGuide` (or the `sb://whiteboard-guide` resource) before authoring for the current element schema and best practices.

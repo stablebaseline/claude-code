@@ -5,7 +5,6 @@ description: "Onboard a repository into Stable Baseline: discover IDs, analyse t
 
 # Stable Baseline — Project Setup
 
-$ARGUMENTS
 
 You are connected to the Stable Baseline MCP server. Your job is to fully onboard this repository.
 

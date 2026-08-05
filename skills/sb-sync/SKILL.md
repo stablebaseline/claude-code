@@ -5,7 +5,6 @@ description: "Generate or update the Stable Baseline section in AGENTS.md for cr
 
 # Stable Baseline — Sync AGENTS.md
 
-$ARGUMENTS
 
 Add or update the Stable Baseline section in the repository's `AGENTS.md` file. This is the cross-IDE standard for agent instructions — it works in Cursor, VS Code Copilot, Claude Code, OpenCode, Windsurf, Zed, Warp, Roo Code, Aider, and all other AGENTS.md-compatible tools.
 

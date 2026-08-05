@@ -5,7 +5,6 @@ description: "Update an existing Stable Baseline whiteboard: add, move, restyle,
 
 # Stable Baseline — Edit Whiteboard
 
-$ARGUMENTS
 
 Update an existing whiteboard in Stable Baseline using MCP.
 

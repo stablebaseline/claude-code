@@ -5,7 +5,6 @@ description: "Generate and insert a diagram into an existing Stable Baseline doc
 
 # Stable Baseline — Create Diagram
 
-$ARGUMENTS
 
 Insert a diagram into a Stable Baseline document using MCP.
 
