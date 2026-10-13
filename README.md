@@ -1,12 +1,12 @@
 # Stable Baseline for Claude Code
 
-Connect [Stable Baseline](https://stablebaseline.io) to [Claude Code](https://claude.ai/code): the MCP server is configured for you, and eleven skills teach Claude how to drive it well.
+Connect [Stable Baseline](https://stablebaseline.io) to [Claude Code](https://claude.ai/code): the MCP server is configured for you, and fifteen skills teach Claude how to drive it well.
 
 ## What you get
 
 - **MCP auto-configuration.** The plugin registers the `sb` MCP server, so no manual config is needed.
-- **Eleven skills.** Claude picks them up on its own when a request matches, and you can invoke one by name (see below).
-- **The full Stable Baseline tool surface.** 196 tools across 18 categories: living documents in CDMD, 29 diagram engines, whiteboards, AI-designed decks and illustrations, brand kits, plans and tasks, improvements and risks, and the shared Knowledge Graph.
+- **Fifteen skills.** Claude picks them up on its own when a request matches, and you can invoke one by name (see below).
+- **The full Stable Baseline tool surface.** 219 tools across 20 categories: living documents in CDMD, 40+ diagram types, whiteboards, AI-designed decks and illustrations, brand kits, plans and tasks, improvements and risks, databases with views, forms and live dashboards, your organisation's agents, and the shared Knowledge Graph.
 
 ## Installation
 
@@ -30,7 +30,7 @@ Add to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.):
 export STABLE_BASELINE_API_KEY="sta_your_api_key_here"
 ```
 
-Mint a key at [Settings > MCP Setup](https://app.stablebaseline.io/settings/mcp-setup). Keys are prefixed `sta_` and can be scoped to a workspace, project or folder, with read, write and delete chosen per content type.
+Create a key under Organisation settings, Connected apps, [Developers](https://app.stablebaseline.io/settings/developers), on the API keys tab. Keys are prefixed `sta_` and can be scoped to a workspace, project or folder, with read, write and delete chosen per content type. Databases start unticked: tick them if you want Claude to work with your databases.
 
 If you would rather not hold a key, the server also supports OAuth 2.1 with Dynamic Client Registration; any MCP client that implements it can sign in without one.
 
@@ -59,15 +59,21 @@ These are **skills**, not slash commands. Claude invokes them automatically when
 | `/stable-baseline:sb-manage-images` | Upload and manage images inside documents |
 | `/stable-baseline:sb-manage-data` | Upload CSV, JSON or TSV data for Vega and Vega-Lite charts |
 | `/stable-baseline:sb-update` | Capture changes and decisions from the current conversation into the docs |
+| `/stable-baseline:sb-database` | Build a database and its tables, fields, views and forms; import CSV or Excel; query and update rows |
+| `/stable-baseline:sb-dashboard` | Build a live dashboard on a database table, check each page as a picture, download it as a PDF |
+| `/stable-baseline:sb-agent` | Ask or delegate to your organisation's agents, follow and approve their jobs, undo one, and prepare new agents and duties |
+| `/stable-baseline:sb-connect` | Connect a Microsoft 365 mailbox and put it to work in an agent's duty, with the duty drafted for you |
 
 Plans, tasks, improvements, decks and brand kits have no dedicated skill yet, but every tool for them is available through the MCP server, so you can ask for them directly.
 
 ## Costs worth knowing
 
-Most tools are free. Two are not, and both tell you the price before doing anything:
+Most tools are free, databases and dashboards included. The ones that cost credits tell you the price before doing anything:
 
-- **`autoDesignWhiteboard`** costs 50 credits. It uses a two-call handshake: the first call returns a quote and your balance and spends nothing, and only a second call with `confirm: true` runs it. It then works in the background, so the board fills in over one to three minutes. Credits are refunded automatically if it fails server-side.
-- **Deck design and generated illustrations** are similarly quoted before they run.
+- **`autoDesignWhiteboard`** costs credits (78 a board at the time of writing). It uses a two-call handshake: the first call returns the exact cost, your balance and a single-use quote token and spends nothing, and only a second call with `confirm: true` and that token runs it. It then works in the background, so the board fills in over one to three minutes. Credits are refunded automatically if it fails server-side.
+- **Deck design and generated illustrations** are quoted the same way before they run.
+- **Agents**: asking or delegating to an agent costs no credits, within a fair-use number of questions a day. A tool with its own fee costs the same when an agent uses it, and the agent's proposal shows the fee first.
+- **Duties** (work an agent does on its own) use credits: 1 when a run checks and finds nothing to do, 5 when it acts. Duties are set up in the Stable Baseline web app.
 
 ## Other MCP clients
 
@@ -89,3 +95,4 @@ Apache License 2.0. See [LICENSE](./LICENSE). Use of the Stable Baseline service
 - [Claude Code recipe](https://stablebaseline.io/docs/recipes/claude)
 - [MCP setup guide](https://stablebaseline.io/docs/mcp/setup)
 - [Tool catalogue](https://stablebaseline.io/docs/mcp/tools)
+- [Databases](https://stablebaseline.io/docs/databases), [Agents](https://stablebaseline.io/docs/agents), [Duties](https://stablebaseline.io/docs/duties) and [Connectors](https://stablebaseline.io/docs/connectors)
