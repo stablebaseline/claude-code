@@ -49,7 +49,7 @@ Write them with the user, in plain words:
 - What a good reply holds, its tone, and what it must never say or promise (prices, dates, legal terms).
 - When to stop and ask a person.
 
-Start with drafts only. Suggest sending only after the user has reviewed a run of good drafts. If the duty should log mail into a table, make or pick the table first (the sb-database skill), and tick that database in the agent's Access, on its Databases row.
+Start with drafts only. Suggest sending only after the user has reviewed a run of good drafts. If the duty should log mail into a table, make or pick the table first (the sb-database skill), and tick Read and Write on the Databases row of the agent's Access (Scope to Databases can hold it to that database).
 
 ## 4) Test it safely
 

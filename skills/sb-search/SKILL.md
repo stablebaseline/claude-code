@@ -1,25 +1,24 @@
 ---
 name: sb-search
-description: "Search the Stable Baseline knowledge graph (the shared company brain) to find documents, answer questions, surface related content, and look up entities across the workspace. Use when user wants to search docs, ask the company brain, find related documents, or run sb-search."
+description: "Find anything in Stable Baseline by its name or id, see what changed this week, and ask the knowledge graph (the shared company brain) questions with cited answers. Use when user wants to search docs, find a document, plan, task, board or database by name, ask the company brain, see what changed, find related documents, or run sb-search."
 ---
 
-# Stable Baseline — Search the Knowledge Graph
+# Stable Baseline: Search
 
-
-Every document, diagram, plan, and board in Stable Baseline feeds a self-learning knowledge graph that is shared across the workspace. Use it to answer questions and find content from Claude Code.
+Find content in Stable Baseline and answer questions from it using MCP tools. Every document, diagram, plan and board can feed the organisation's knowledge graph, where it is switched on.
 
 Steps:
-1) For a natural-language question or topic, call `kg_search` (semantic search) with the query.
-2) To read a synthesized wiki page for a topic or entity, call `kg_get_wiki_page`.
-3) To find documents related to one you already have, call `kg_related_documents`.
-4) For a specific entity, call `kg_get_entity`; for what links to it, call `kg_backlinks`.
-5) If you only need to locate a document by title or folder, `listDocuments` and the project-hierarchy resource are faster than semantic search.
-6) Summarize the findings and cite the source documents (title + id) so the user can open them.
+1) To FIND something by its name, friendly id (DOC-123, PLN-4, DB-12) or uuid, of any kind: `kg_search` with `artefactMetadataOnly: true`, narrowed with `artefactTypes` (document, whiteboard, plan, task, improvement, compliance, database, row) when you know the kind. It works on every plan, with or without the knowledge graph.
+2) To search inside documents: `listDocuments` with `query`. It greps every document body and returns `contentMatches` with line numbers; use `isRegex` for a pattern.
+3) To ANSWER a question from the content: `kg_search` without that flag, with `projectId` or `workspaceId`. Use `local` for a specific fact, `global` for themes and overviews, `graph` and `path` for how things connect. These knowledge modes need the organisation's knowledge graph (Enterprise plans); where it is off the call says so, so fall back to step 2.
+4) To see what changed: `listDocuments`, `listWhiteboards`, `listImprovements` and `listPlans` with `changedSince` (today, this_week, last_7_days, a date and so on) and the user's `timeZone`, scoped with `projectId`, `workspaceId` or neither for the whole organisation. For how one document changed: `listDocumentVersions` with `documentId`, `changedSince` and `compare: true`.
+5) For related content: `kg_related_documents`, `kg_backlinks`, `kg_get_entity` and `kg_get_wiki_page`; for good starting questions, `kg_suggest_sample_questions`.
+6) Summarise the findings and cite each source (its title and the link the tool returned) so the user can open it.
 
 ## Notes
-- The knowledge graph is scoped to the caller's workspace and permissions.
+- Results are limited to what the caller may open, and to what the API key reaches.
+- Counts, totals and rows of a database table: the sb-database skill.
 - If `kg_search` returns little, the graph may still be building for recently added docs; fall back to `listDocuments`.
-- `kg_suggest_sample_questions` offers good starting questions for a workspace.
 
 ## Reference
-- `kg_search`, `kg_get_wiki_page`, `kg_related_documents`, `kg_get_entity`
+- `kg_search`, `listDocuments`, `listDocumentVersions`, `kg_get_wiki_page`, `kg_related_documents`, `kg_get_entity`

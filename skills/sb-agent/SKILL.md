@@ -61,7 +61,7 @@ These steps happen in the Stable Baseline web app. Offer to draft the text first
 1) **A new agent**: Agents in the sidebar, then New agent (or start from a template).
    - Its name, an avatar and a short description.
    - Mandate: its instructions in plain words (up to 8,000 characters) and its tools, either all of them or only the ones picked. A preset (Read only, Editor or Full access) fills in the tools, when it asks first and the access it starts with.
-   - Access: the workspaces, projects or folders it reaches, and what it may read, change or delete there. Databases have a row of their own: with nothing ticked, the agent reaches no database.
+   - Access: the workspaces, projects or folders it reaches, and what it may read, change or delete there. Databases have a row of their own: with nothing ticked, the agent reaches no database, and Scope to Databases can hold it to chosen databases and tables.
    - Sharing and approvals: who may use it, who may manage it, and when it asks first. Then review and create it.
 2) **A duty**: open the agent, the Duties tab, then Add a duty (the user must be able to manage the agent).
    - How it starts: on a schedule; when something changes in Stable Baseline (a row is added to a table, a task becomes overdue, a meeting ends, and more); or when mail arrives in a connected mailbox (see the sb-connect skill).

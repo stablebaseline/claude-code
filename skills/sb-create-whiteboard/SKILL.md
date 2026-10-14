@@ -27,7 +27,7 @@ There are two ways to build a board. Pick based on what the user wants:
 1) `createWhiteboard` with { projectId, title }. The title is required.
 2) Add content with `addWhiteboardElements`. Prefer the RICHEST representation that fits, not plain rectangles:
    - Stencils: browse with `listWhiteboardStencils`, then place symbols and templates.
-   - Architecture icons: look them up with `listArchitectureIcons` (one query per technology, e.g. "docker", "aws s3") and use the returned `iconPath` EXACTLY. Do not invent icon paths.
+   - Architecture icons: look them up with `listArchitectureIcons` (one query per technology, e.g. "docker", "aws s3") and use the returned `iconPath` EXACTLY, or for a library icon with no `iconPath` its `iconUrl` as `imageUrl`. Do not invent icon paths.
    - Embedded diagrams: `insertWhiteboardDiagram` drops a rendered diagram (Mermaid, D2, infographic, etc.) onto the board.
    - Images: `insertWhiteboardImage`.
    - Sticky notes, shapes, connectors, and freedraw for annotation and emphasis.
