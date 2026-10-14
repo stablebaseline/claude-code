@@ -30,7 +30,7 @@ Add to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.):
 export STABLE_BASELINE_API_KEY="sta_your_api_key_here"
 ```
 
-Create a key under Organisation settings, Connected apps, [Developers](https://app.stablebaseline.io/settings/developers), on the API keys tab. Keys are prefixed `sta_` and can be scoped to a workspace, project or folder, with read, write and delete chosen per content type. Databases start unticked: tick them if you want Claude to work with your databases.
+Create a key under Organisation settings, Connected apps, [Developers](https://app.stablebaseline.io/settings/developers), on the API keys tab. Keys are prefixed `sta_` and can be scoped to a workspace, project or folder, with read, write and delete chosen per content type. Databases start unticked: tick them if you want Claude to work with your databases. Under Scope to Databases you can hold a key to chosen databases and tables, each with its own read, write and delete. A key's choices are fixed once it is made, so make a new key to change them.
 
 If you would rather not hold a key, the server also supports OAuth 2.1 with Dynamic Client Registration; any MCP client that implements it can sign in without one.
 
@@ -54,12 +54,12 @@ These are **skills**, not slash commands. Claude invokes them automatically when
 | `/stable-baseline:sb-edit-doc` | Edit a document with merge-safe patching and optimistic locking |
 | `/stable-baseline:sb-create-diagram` | Create a diagram, with type selection and DSL guidance |
 | `/stable-baseline:sb-create-whiteboard` | Build a whiteboard by hand, or hand a goal to the multi-agent designer |
-| `/stable-baseline:sb-edit-whiteboard` | Update a whiteboard: add, move or remove elements |
-| `/stable-baseline:sb-search` | Search the Knowledge Graph, your shared company brain |
+| `/stable-baseline:sb-edit-whiteboard` | Update a whiteboard: add, move or remove elements, or export it as PowerPoint |
+| `/stable-baseline:sb-search` | Find anything by name, see what changed, and ask the Knowledge Graph, your shared company brain |
 | `/stable-baseline:sb-manage-images` | Upload and manage images inside documents |
 | `/stable-baseline:sb-manage-data` | Upload CSV, JSON or TSV data for Vega and Vega-Lite charts |
 | `/stable-baseline:sb-update` | Capture changes and decisions from the current conversation into the docs |
-| `/stable-baseline:sb-database` | Build a database and its tables, fields, views and forms; import CSV or Excel; query and update rows |
+| `/stable-baseline:sb-database` | Build a database and its tables, fields, views and forms; import CSV or Excel; query and update rows; answer a form |
 | `/stable-baseline:sb-dashboard` | Build a live dashboard on a database table, check each page as a picture, download it as a PDF |
 | `/stable-baseline:sb-agent` | Ask or delegate to your organisation's agents, follow and approve their jobs, undo one, and prepare new agents and duties |
 | `/stable-baseline:sb-connect` | Connect a Microsoft 365 mailbox and put it to work in an agent's duty, with the duty drafted for you |
