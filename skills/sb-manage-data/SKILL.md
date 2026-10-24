@@ -3,23 +3,23 @@ name: sb-manage-data
 description: "Upload, reference, and manage data files (CSV, JSON, TSV) for Vega/Vega-Lite diagrams in a Stable Baseline document. Use when user wants to upload data files, create charts with data, or run sb-manage-data."
 ---
 
-# Stable Baseline — Manage Data Files
+# Stable Baseline: Manage Data Files
 
 
 Manage data files for Vega/Vega-Lite diagrams in a Stable Baseline document.
 
-If you don't know the documentId: use `listWorkspaces` → `listProjects` → `listDocuments` or `getProjectHierarchy` to find it. Or read `.sb/config.json` for cached IDs.
+If you don't know the documentId: use `listWorkspaces`, then `listProjects`, then `listDocuments` or `getProjectHierarchy` to find it. Or read `.sb/config.json` for cached IDs.
 
-Data files are **sidebar attachments** — they are NOT embedded in the document body. They are referenced by URL in Vega/Vega-Lite diagram specs.
+Data files are **sidebar attachments**: they are NOT embedded in the document body. They are referenced by URL in Vega/Vega-Lite diagram specs.
 
 Supported formats: CSV (.csv), JSON (.json), TSV (.tsv), plain text (.txt). Max 10MB.
 
 ## Uploading a data file and creating a Vega diagram
 
 1) Call `createVegaDataUploadSession` with `{ documentId, fileName }`.
-   - Content type is auto-detected from the file extension (.csv → text/csv, etc.).
+   - Content type is auto-detected from the file extension (.csv becomes text/csv, etc.).
    - You can override with the `contentType` parameter if needed.
-   → Returns `uploadUrl` and `assetUrl`.
+   It returns `uploadUrl` and `assetUrl`.
 
 2) PUT the raw file bytes to `uploadUrl` with header `Content-Type: <contentType>`.
    - The URL is single-use and expires in 5 minutes.
@@ -61,7 +61,7 @@ A single Vega spec can reference multiple data sources. Upload each file separat
 
 Hard rules:
 - ALWAYS upload data files via `createVegaDataUploadSession` + PUT. Never embed large datasets inline in diagram code.
-- The `assetUrl` is permanent and JWT-authenticated — it requires a valid user session to access.
+- The `assetUrl` is permanent and JWT-authenticated: it requires a valid user session to access.
 - Data files are NOT part of the document body. They won't appear in `getDocument` output.
 - Clean up unused data files with `deleteVegaDataFile` to avoid orphaned storage.
 

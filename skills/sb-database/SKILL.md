@@ -13,12 +13,12 @@ If you don't know IDs yet: read `.sb/config.json` for cached IDs, or use `listWo
 
 - When you are unsure of a shape, call `getDatabaseGuide` with a `topic` (`overview`, `finding_rows`, `totals_and_groups`, `bulk_changes`, `fields_and_types`, `structure`, `views`, `importing`, `deleting`, `errors`). It costs nothing and beats guessing.
 - Name things exactly as `getDatabase` lists them: a database by id, friendly id (such as DB-12) or exact name; a table by id or name; fields and choices by name; a person by user id or "me".
-- If the database tools are missing, databases are switched off for this organisation. If `listDatabases` shows nothing the user expects, the API key may not reach databases: they start unticked when a key is made (Organisation settings, Connected apps, Developers, API keys). A key can also be held to chosen databases and tables, each with its own Read, Write and Delete: a database it does not reach answers as not found, and with Write but no Delete it deletes nothing. A key's choices are fixed once it is made, so widening one means a new key. Say so plainly; do not work around it.
+- If the database tools are missing, databases are switched off for this organisation. If `listDatabases` shows nothing the user expects, the API key may not reach databases: Databases and dashboards start unticked when a key is made (Organisation settings, Connected apps, Developers, API keys). A key can also be held to chosen databases and tables (Only some databases), each with its own Read, Edit and Delete: a database it does not reach answers as not found, and with Edit but no Delete it deletes nothing. A key's choices are fixed once it is made, so widening one means a new key. Say so plainly; do not work around it.
 
 ## Find and read
 
 1) `listDatabases` with `projectId` (or `workspaceId`, or `query` to find one by name or DB-12).
-2) `getDatabase` with `databaseId` and `table`: the fields and their types, the choices, the views, the row rule and the user's access. Read this before any query or write.
+2) `getDatabase` with `databaseId` and `table`: the fields and their types, the choices, the views, the row rule, the user's access, and how each kind of value is written (`writing`), including which fields are never written. Read this before any query or write.
 
 ## Make a database
 
@@ -48,6 +48,7 @@ Use `queryDatabaseRows` with `databaseId` and `table`. One call answers a questi
 - Words: `query`. A saved view's filter: `view`. The next page: `cursor`, from the answer's `nextCursor`.
 - Dates: `in_period` (such as "this_month"), `in_the_last` (a number of days), or values such as "today-30". Pass `timeZone` when you know the user's.
 - Answer with the numbers and the link the tool returns.
+- If an answer lists `restrictedFields`, those columns are hidden from the user: they depend on linked rows the user cannot all see, or on a table the user cannot open. A hidden value is not an empty one. Say so, and do not guess it.
 
 One row in full: `getDatabaseRow` with `rowId` (the first value of each row a query returns). With `history: true` it lists who changed what and when.
 
@@ -88,7 +89,7 @@ Opening a form to people outside the organisation (domains, emails or anyone) is
 3) Read the answers back, and on a yes call `writeDatabaseRows` with `databaseId`, `form` and `answers`, each answer named by its field as `getDatabase` lists it (or by the question's words). `form` never goes with `rows`, `where` or `set`. Pass `timeZone` for a date and time.
 4) "Not sent" lists each question to fix, and nothing was added: ask for those answers only, then send again. The answer adds one row to the form's table; report it with the link returned.
 
-Through a key, a form takes answers only from someone who can add rows to its table, so the key needs Write on databases. A question that takes files is answered in Stable Baseline, at the form's link.
+Through a key, a form takes answers only from someone who can add rows to its table, so the key needs Edit on Databases and dashboards. A question that takes files is answered in Stable Baseline, at the form's link.
 
 ## Delete
 

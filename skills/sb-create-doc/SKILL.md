@@ -3,12 +3,12 @@ name: sb-create-doc
 description: "Create a new Stable Baseline document (CDMD) with optional follow-up diagram/image insertion. Use when user wants to create a document, write docs, or run sb-create-doc."
 ---
 
-# Stable Baseline — Create Document
+# Stable Baseline: Create Document
 
 
 Create a Stable Baseline document using MCP tools.
 
-If you don't know IDs yet: use `listWorkspaces` → `listProjects` → `listFolders` to discover them. Or read `.sb/config.json` for cached IDs.
+If you don't know IDs yet: use `listWorkspaces`, then `listProjects`, then `listFolders` to discover them. Or read `.sb/config.json` for cached IDs.
 
 Rules:
 - Write CDMD. Keep it readable and structured.
@@ -18,7 +18,7 @@ Rules:
 
 Steps:
 1) Call `createDocument` with { projectId, folderId (optional), title, cdmd }.
-2) Update `.sb/config.json` `cache.documents` with the new document's title → `{ "id": "<doc-id>", "folderId": "<folder-id-or-null>" }` mapping, and set `cache.lastUpdated` to the current ISO 8601 timestamp.
+2) Update `.sb/config.json` `cache.documents` with the new document's title mapped to `{ "id": "<doc-id>", "folderId": "<folder-id-or-null>" }`, and set `cache.lastUpdated` to the current ISO 8601 timestamp.
 3) If diagrams are requested:
    - Call `listDiagramTypes` / `getDiagramTypeGuide`
    - Call `insertDiagramInDocument` with afterLine placements.

@@ -3,12 +3,12 @@ name: sb-manage-images
 description: "Upload, insert, update, or delete images in a Stable Baseline document using the upload-session flow. Use when user wants to manage images, add screenshots, or run sb-manage-images."
 ---
 
-# Stable Baseline — Manage Images
+# Stable Baseline: Manage Images
 
 
 Manage images in a Stable Baseline document using MCP tools.
 
-If you don't know the documentId: use `listWorkspaces` → `listProjects` → `listDocuments` or `getProjectHierarchy` to find it. Or read `.sb/config.json` for cached IDs.
+If you don't know the documentId: use `listWorkspaces`, then `listProjects`, then `listDocuments` or `getProjectHierarchy` to find it. Or read `.sb/config.json` for cached IDs.
 
 Supported formats: PNG, JPEG, GIF, WebP, SVG (max 10MB).
 
@@ -16,9 +16,9 @@ Supported formats: PNG, JPEG, GIF, WebP, SVG (max 10MB).
 
 1) Call `getDocument` to get the current `versionTimestamp` and line numbers.
 
-2) **Upload-session flow** (best practice — avoids base64 issues):
+2) **Upload-session flow** (best practice: avoids base64 issues):
    a. Call `createImageUploadSession` with `{ documentId, fileName, mimeType }`.
-      → Returns `uploadUrl` and `assetUrl`.
+      It returns `uploadUrl` and `assetUrl`.
    b. PUT the raw file bytes to `uploadUrl` with header `Content-Type: <mimeType>`.
       The URL is single-use and expires in 5 minutes.
    c. Call `insertImageInDocument` with `imageUrl` set to the `assetUrl` from step (a).
@@ -36,7 +36,7 @@ Supported formats: PNG, JPEG, GIF, WebP, SVG (max 10MB).
 - Call `getDocument` to find the IMAGE_OMITTED marker and note the `imageId`.
 - Call `updateImageInDocument` with the `imageId`, `documentVersionTimestamp`, and fields to change:
   `alt`, `caption`, `nlDescription`, `width`, `height`, `align`.
-- This does NOT replace the image file — to swap the image, delete and re-insert.
+- This does NOT replace the image file: to swap the image, delete and re-insert.
 
 ## Deleting an image
 
@@ -54,4 +54,4 @@ Hard rules:
 - NEVER hand-edit IMAGE_OMITTED markers in CDMD.
 - ALWAYS use `getDocument` before any operation to get the current `versionTimestamp`.
 - If an operation fails due to versionTimestamp mismatch, re-read the document and retry.
-- Write descriptive `nlDescription` values — they power semantic search.
+- Write descriptive `nlDescription` values: they power semantic search.

@@ -1,7 +1,7 @@
 {
   "name": "stable-baseline",
   "description": "Create and maintain living docs, diagrams, infographics, whiteboards and databases with live dashboards in your Stable Baseline workspace, work with your organisation's agents, and search your shared knowledge graph, all from Claude Code.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": {
     "name": "Stable Baseline",
     "email": "support@stablebaseline.io"
